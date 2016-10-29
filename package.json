@@ -1,0 +1,40 @@
+{
+  "name": "wxjs",
+  "version": "0.0.1",
+  "description": "react版本的微信js基础服务",
+  "keywords": [
+    "wxjs"
+  ],
+  "homepage": "https://github.com/dxcweb/wxjs",
+  "maitainers": [
+    "605863278@qq.com"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dxcweb/wxjs.git"
+  },
+  "licenses": "MIT",
+  "config": {
+    "port": 8200
+  },
+  "scripts": {
+    "build": "rc-tools run build",
+    "start": "rc-tools run server",
+    "pub": "rc-tools run pub"
+  },
+  "devDependencies": {
+    "babel-core": "^6.18.0",
+    "rc-tools": "5.x",
+    "react": "^15.2.1",
+    "react-dom": "^15.2.1"
+  },
+  "dependencies": {
+    "fetch-jsonp": "^1.0.2"
+  },
+  "files": [
+    "example",
+    "lib",
+    "src"
+  ],
+  "main": "./lib"
+}
