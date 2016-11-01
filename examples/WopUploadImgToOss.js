@@ -60,15 +60,15 @@ class WopUploadImgToOssExamples extends Component {
             success: function (res) {
                 const serverId = res.serverId; // 返回图片的服务器端ID
                 //上传图片到OSS
-                WopUploadImgToOss(me.wop_url, me.wx_app_id, serverId).then(function (img) {
-                    ossImgs.push(img);
-                    serverIds.push(serverId);
-                    if (localIds.length > 0) {
-                        me._uploadImage(localIds, serverIds, ossImgs)
-                    } else {
-                        me.uploadImageFinish(serverIds, ossImgs);
-                    }
-                });
+WopUploadImgToOss(me.wop_url, me.wx_app_id, serverId).then(function (img) {
+    ossImgs.push(img);
+    serverIds.push(serverId);
+    if (localIds.length > 0) {
+        me._uploadImage(localIds, serverIds, ossImgs)
+    } else {
+        me.uploadImageFinish(serverIds, ossImgs);
+    }
+});
             }
         });
     }
