@@ -3,7 +3,7 @@
  */
 import React, {Component, PropTypes} from 'react';
 import fetchJsonp from 'fetch-jsonp'
-import Base64 from './utils/Base64'
+import Base64 from '../utils/Base64'
 
 export default class WxQyLogin extends Component {
     static defaultProps = {

@@ -1,10 +1,9 @@
 import fetchJsonp from 'fetch-jsonp'
-const uploadImgToOss = (url, wx_app_id, media_id)=> {
-    const fullUrl = url + 'app/base/upload-img' +
-        '?wx_app_id=' + wx_app_id +
-        '&media_id=' + media_id;
+const uploadImgToOss = (url, media_id)=> {
+    const fullUrl = url + 'wx-base/media/json-p-upload-img2?' +
+        'media_id=' + media_id;
     return fetchJsonp(fullUrl, {
-        timeout: 30000
+        timeout: 3000
     }).then(function (response) {
         return response.json()
     }).then((response)=> {

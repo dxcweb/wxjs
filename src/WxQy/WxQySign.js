@@ -3,9 +3,9 @@
  */
 import React, {Component, PropTypes} from 'react';
 import fetchJsonp from 'fetch-jsonp'
-import Base64 from './utils/Base64'
+import Base64 from '../utils/Base64'
 
-export default class WopSign extends Component {
+export default class WxQySign extends Component {
     state = {
         init: false
     };
@@ -22,21 +22,32 @@ export default class WopSign extends Component {
             const data = JSON.parse(response);
             data.debug = debug;
             data.jsApiList = jsApiList;
-            wx.config(data);
+            me.wxConfig(data);
             wx.ready(function () {
+                if (me.timeout) {
+                    clearTimeout(me.timeout);
+                }
                 me.setState({init: true});
-            })
+            });
         })
     }
 
+    wxConfig(data) {
+        console.log('wxConfig');
+        const me = this;
+        wx.config(data);
+        this.timeout = setTimeout(function () {
+            me.wxConfig(data);
+        }, 2000);
+    }
+
     jsonp() {
-        const {url, wx_app_id}=this.props;
-        const fullUrl = url + 'app/base/sign?' +
-            'wx_app_id=' + wx_app_id +
+        const {url}=this.props;
+        const fullUrl = url + 'wx-base/jsapi-ticket/json-p-get-sign-package3?' +
             '&url=' + encodeURIComponent(Base64.encode(location.href));
         return fetchJsonp(fullUrl, {
             timeout: 30000,
-            jsonpCallbackFunction: 'WopSign'
+            jsonpCallbackFunction: 'WxQySignPackage'
         }).then(function (response) {
             return response.json()
         });
@@ -45,16 +56,13 @@ export default class WopSign extends Component {
     render() {
 
         const {init}=this.state;
-        const {wx_app_id, url}=this.props;
-        if (wx_app_id == null) {
-            return <div>请设置wx_app_id</div>;
-        }
+        const {url,children}=this.props;
         if (url == null) {
-            return <div>请设置wop的url</div>;
+            return <div>请设置wxqy的url</div>;
         }
         if (!init) {
             return <div></div>
         }
-        return this.props.children;
+        return children;
     }
 }
