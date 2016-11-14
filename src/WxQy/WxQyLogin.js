@@ -30,7 +30,7 @@ export default class WxQyLogin extends Component {
                     this.login(json.url);
                 } else {
                     this.setState({isLogin: true});
-                    userInfo(json);
+                    userInfo.call(this,json);
                 }
             })
         }

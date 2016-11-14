@@ -11,6 +11,10 @@ class WopSignExamples extends Component {
                 url="http://wop.dxcweb.com/service/"
                 wx_app_id="wx5f069426b7e49373"
                 debug={true}
+                ready={(wx)=>{
+                    // wx.xxx
+                    console.log('微信签名完成');
+                }}
             >
                 <div>
                     微信签名完成！

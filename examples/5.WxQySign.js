@@ -10,6 +10,10 @@ class WopSignExamples extends Component {
             <WxQySign
                 url="http://21.net.fangstar.net/wxqy-zyb/"
                 debug={true}
+                ready={(wx)=>{
+                    // wx.xxx
+                    console.log('微信签名完成');
+                }}
             >
                 <div>
                     微信签名完成！

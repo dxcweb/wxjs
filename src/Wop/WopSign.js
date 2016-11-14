@@ -11,12 +11,14 @@ export default class WopSign extends Component {
     };
     static defaultProps = {
         debug: false,
+        ready: (wx)=> {
+        },
         jsApiList: ['onMenuShareTimeline', 'onMenuShareAppMessage', 'onMenuShareQQ', 'onMenuShareWeibo', 'onMenuShareQZone', 'startRecord', 'stopRecord', 'onVoiceRecordEnd', 'playVoice', 'pauseVoice', 'stopVoice', 'onVoicePlayEnd', 'uploadVoice', 'downloadVoice', 'chooseImage', 'previewImage', 'uploadImage', 'downloadImage', 'translateVoice', 'getNetworkType', 'openLocation', 'getLocation', 'hideOptionMenu', 'showOptionMenu', 'hideMenuItems', 'showMenuItems', 'hideAllNonBaseMenuItem', 'showAllNonBaseMenuItem', 'closeWindow', 'scanQRCode', 'chooseWXPay', 'openProductSpecificView', 'addCard', 'chooseCard', 'openCard']
     };
 
     //渲染前调用一次，这个时候DOM结构还没有渲染。fv
     componentWillMount() {
-        const {debug, jsApiList}=this.props;
+        const {debug, jsApiList,ready}=this.props;
         const me = this;
         this.jsonp().then((response)=> {
             const data = JSON.parse(response);
@@ -27,6 +29,7 @@ export default class WopSign extends Component {
                 if (me.timeout) {
                     clearTimeout(me.timeout);
                 }
+                ready(wx);
                 me.setState({init: true});
             });
         })

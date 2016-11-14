@@ -10,7 +10,7 @@ import Loading from './Loading';
 class WxQyUploadImgToOssExamples extends Component {
     state = {
         loading: false,
-        serverIds: []
+        serverIds: []//serverIds例子中用于复制调试使用实际项目中不需要
     };
 
     wxqy_url = "http://21.net.fangstar.net/wxqy-zyb/";
@@ -27,7 +27,7 @@ class WxQyUploadImgToOssExamples extends Component {
         return value.url;
     }
 
-    uploadImage(serverId,localId, callback) {
+    uploadImage(serverId, localId, callback) {
         const me = this;
         const {serverIds}=this.state;
         serverIds.push(serverId);
@@ -41,7 +41,7 @@ class WxQyUploadImgToOssExamples extends Component {
                 alert(res.msg);
                 callback(false);
             }
-        }).catch(function(ex) {
+        }).catch(function (ex) {
             alert("上传错误,请重试！");
             callback(false);
         });
@@ -54,11 +54,12 @@ class WxQyUploadImgToOssExamples extends Component {
             this.setState({loading})
         }
     }
+
     render() {
         const me = this;
         const {serverIds}=me.state;
         return (
-            <WxQySign url={this.wxqy_url} >
+            <WxQySign url={this.wxqy_url}>
                 <div style={{maxWidth: 400,margin:20}}>
                     <Loading loading={this.state.loading}/>
                     <WxFlowLayoutImagePicker

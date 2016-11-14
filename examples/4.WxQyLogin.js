@@ -9,7 +9,9 @@ class WopLoginExamples extends Component {
         return (
             <WxQyLogin
                 url="http://21.net.fangstar.net/wxqy-zyb/"
-                userInfo={(user)=> (console.log(user))}
+                userInfo={function(user) {
+                  console.log(user,this)
+                }}
             >
                 <div>
                     微信登录成功！
