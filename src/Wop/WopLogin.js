@@ -2,8 +2,9 @@
  * Created by dxc on 2016/10/28.
  */
 import React, {Component, PropTypes} from 'react';
-import fetchJsonp from 'fetch-jsonp'
 import Base64 from '../utils/Base64'
+import JsonP from '../utils/JsonP'
+import Q from 'q'
 
 export default class WxQyLogin extends Component {
     static defaultProps = {
@@ -57,12 +58,17 @@ export default class WxQyLogin extends Component {
             'wx_app_id=' + wx_app_id +
             '&is_user_info=' + is_get_user_info +
             '&url=' + encodeURIComponent(Base64.encode(location.href));
-        return fetchJsonp(fullUrl, {
-            timeout: 30000,
-            jsonpCallbackFunction: 'WopUserInfo'
-        }).then(function (response) {
-            return response.json()
-        });
+        const promise = Q.defer();
+        const timed = setTimeout(function () {
+            alert('登录超时！');
+        }, 10000);
+        JsonP(fullUrl, 'WopUserInfo' + Math.floor(Math.random() * 10000));
+        window.WopUserInfo = function (res) {
+            clearTimeout(timed);
+            window.WopUserInfo = null;
+            promise.resolve(res);
+        };
+        return promise.promise;;
     }
 
     render() {

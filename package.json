@@ -1,6 +1,6 @@
 {
   "name": "wxjs",
-  "version": "0.0.4",
+  "version": "0.0.7",
   "description": "react版本的微信js基础服务",
   "keywords": [
     "wxjs"
@@ -28,14 +28,14 @@
     "lodash": "^4.16.4",
     "rc-tools": "5.x",
     "react": "^15.2.1",
-    "react-dom": "^15.2.1"
+    "react-dom": "^15.2.1",
+    "react-imagepicker": "^0.0.8"
   },
   "dependencies": {
-    "fetch-jsonp": "^1.0.2",
-    "react-imagepicker": "^0.0.4"
+    "q": "^1.4.1"
   },
   "files": [
-    "example",
+    "examples",
     "lib",
     "src"
   ],

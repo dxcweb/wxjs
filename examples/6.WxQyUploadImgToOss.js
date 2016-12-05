@@ -38,7 +38,7 @@ class WxQyUploadImgToOssExamples extends Component {
                 res.data.localId = localId;
                 callback(res.data);
             } else {
-                alert(res.msg);
+                alert(res);
                 callback(false);
             }
         }).catch(function (ex) {

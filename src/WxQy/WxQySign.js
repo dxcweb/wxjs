@@ -2,8 +2,9 @@
  * Created by dxc on 2016/10/28.
  */
 import React, {Component, PropTypes} from 'react';
-import fetchJsonp from 'fetch-jsonp'
 import Base64 from '../utils/Base64'
+import Q from 'q'
+import JsonP from '../utils/JsonP'
 
 export default class WxQySign extends Component {
     state = {
@@ -18,7 +19,7 @@ export default class WxQySign extends Component {
 
     //渲染前调用一次，这个时候DOM结构还没有渲染。fv
     componentWillMount() {
-        const {debug, jsApiList,ready}=this.props;
+        const {debug, jsApiList, ready}=this.props;
         const me = this;
         this.jsonp().then((response)=> {
             const data = JSON.parse(response);
@@ -48,12 +49,19 @@ export default class WxQySign extends Component {
         const {url}=this.props;
         const fullUrl = url + 'wx-base/jsapi-ticket/json-p-get-sign-package3?' +
             '&url=' + encodeURIComponent(Base64.encode(location.href));
-        return fetchJsonp(fullUrl, {
-            timeout: 30000,
-            jsonpCallbackFunction: 'WxQySignPackage'
-        }).then(function (response) {
-            return response.json()
-        });
+
+
+        const promise = Q.defer();
+        JsonP(fullUrl, 'WxQySignPackage' + Math.floor(Math.random() * 10000));
+        const timed = setTimeout(function () {
+            alert('签名超时！');
+        }, 10000);
+        window.WxQySignPackage = function (res) {
+            clearTimeout(timed);
+            window.WxQySignPackage = null;
+            promise.resolve(res);
+        };
+        return promise.promise;
     }
 
     render() {
