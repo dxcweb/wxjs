@@ -8,4 +8,18 @@ import WopUploadImgToOss from './Wop/WopUploadImgToOss'
 import WxQyLogin from './WxQy/WxQyLogin'
 import WxQySign from './WxQy/WxQySign'
 import WxQyUploadImgToOss from './WxQy/WxQyUploadImgToOss'
-export default  {Base64, WopLogin, WopSign, WopUploadImgToOss, WxQyLogin, WxQySign, WxQyUploadImgToOss}
+import WxLogin from './Wx/WxLogin'
+import WxSign from './Wx/WxSign'
+import WxUploadImgToOss from './Wx/WxUploadImgToOss'
+export default  {
+    Base64,
+    WopLogin,
+    WopSign,
+    WopUploadImgToOss,
+    WxQyLogin,
+    WxQySign,
+    WxQyUploadImgToOss,
+    WxLogin,
+    WxSign,
+    WxUploadImgToOss
+}
