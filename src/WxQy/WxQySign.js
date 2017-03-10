@@ -5,7 +5,7 @@ import React, {Component, PropTypes} from 'react';
 import Base64 from '../utils/Base64'
 import Q from 'q'
 import JsonP from '../utils/JsonP'
-
+const openUrl = location.href;
 export default class WxQySign extends Component {
     state = {
         init: false
@@ -48,7 +48,7 @@ export default class WxQySign extends Component {
     jsonp() {
         const {url}=this.props;
         const fullUrl = url + 'wx-base/jsapi-ticket/json-p-get-sign-package3?' +
-            '&url=' + encodeURIComponent(Base64.encode(location.href));
+            '&url=' + encodeURIComponent(Base64.encode(openUrl));
 
 
         const promise = Q.defer();

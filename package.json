@@ -1,6 +1,6 @@
 {
   "name": "wxjs",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "react版本的微信js基础服务",
   "keywords": [
     "wxjs"
