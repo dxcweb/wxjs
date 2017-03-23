@@ -5,7 +5,7 @@ import React, {Component, PropTypes} from 'react';
 import Base64 from '../utils/Base64'
 import Q from 'q'
 import JsonP from '../utils/JsonP'
-const openUrl = location.href;
+const openUrl = location.origin + location.pathname + location.search;
 export default class WxQySign extends Component {
     state = {
         init: false
